@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch Sederhana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .stopwatch-container {
+            background-color: #ffffff;
+            padding: 30px 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #display {
+            font-size: 4em;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            color: white;
+        }
+
+        #startBtn {
+            background-color: #4CAF50;
+        }
+
+        #startBtn:hover {
+            background-color: #45a049;
+        }
+
+        #pauseBtn {
+            background-color: #ff9800;
+        }
+
+        #pauseBtn:hover {
+            background-color: #e68a00;
+        }
+
+        #resetBtn {
+            background-color: #f44336;
+        }
+
+        #resetBtn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stopwatch-container">
+        <h1>Stopwatch</h1>
+        <div id="display">0</div>
+        <div class="buttons">
+            <button id="startBtn" class="btn">Mulai</button>
+            <button id="pauseBtn" class="btn">Jeda</button>
+            <button id="resetBtn" class="btn">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        let seconds = 0;
+        let intervalId = null;
+
+        const display = document.getElementById('display');
+        const startBtn = document.getElementById('startBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        function startStopwatch() {
+            if (intervalId === null) {
+                intervalId = setInterval(() => {
+                    seconds++;
+                    display.textContent = seconds;
+                }, 1000); // 1000 milidetik = 1 detik
+            }
+        }
+
+        function pauseStopwatch() {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+
+        function resetStopwatch() {
+            pauseStopwatch();
+            seconds = 0;
+            display.textContent = seconds;
+        }
+
+        startBtn.addEventListener('click', startStopwatch);
+        pauseBtn.addEventListener('click', pauseStopwatch);
+        resetBtn.addEventListener('click', resetStopwatch);
+    </script>
+
+</body>
+</html>
