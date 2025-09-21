@@ -1,126 +1,76 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stopwatch Sederhana</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            flex-direction: column;
-        }
-
-        .stopwatch-container {
-            background-color: #ffffff;
-            padding: 30px 50px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
         }
 
         #display {
-            font-size: 4em;
-            font-weight: bold;
-            color: #4CAF50;
+            font-size: 3em;
             margin-bottom: 20px;
         }
 
-        .buttons {
+        #button-container {
             display: flex;
-            gap: 15px;
-            justify-content: center;
+            gap: 10px; /* Jarak antar tombol */
         }
 
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
+        button {
+            padding: 8px 16px;
             font-size: 1em;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            color: white;
-        }
-
-        #startBtn {
-            background-color: #4CAF50;
-        }
-
-        #startBtn:hover {
-            background-color: #45a049;
-        }
-
-        #pauseBtn {
-            background-color: #ff9800;
-        }
-
-        #pauseBtn:hover {
-            background-color: #e68a00;
-        }
-
-        #resetBtn {
-            background-color: #f44336;
-        }
-
-        #resetBtn:hover {
-            background-color: #d32f2f;
         }
     </style>
 </head>
 <body>
 
-    <div class="stopwatch-container">
-        <h1>Stopwatch</h1>
-        <div id="display">0</div>
-        <div class="buttons">
-            <button id="startBtn" class="btn">Mulai</button>
-            <button id="pauseBtn" class="btn">Jeda</button>
-            <button id="resetBtn" class="btn">Reset</button>
-        </div>
+    <h1 id="display">0</h1>
+    <div id="button-container">
+        <button id="startButton">Start</button>
+        <button id="stopButton">Stop</button>
+        <button id="resetButton">Reset</button>
     </div>
 
     <script>
         let seconds = 0;
         let intervalId = null;
-
+        
         const display = document.getElementById('display');
-        const startBtn = document.getElementById('startBtn');
-        const pauseBtn = document.getElementById('pauseBtn');
-        const resetBtn = document.getElementById('resetBtn');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const resetButton = document.getElementById('resetButton');
 
         function startStopwatch() {
             if (intervalId === null) {
                 intervalId = setInterval(() => {
                     seconds++;
                     display.textContent = seconds;
-                }, 1000); // 1000 milidetik = 1 detik
+                }, 1000);
             }
         }
 
-        function pauseStopwatch() {
+        function stopStopwatch() {
             clearInterval(intervalId);
             intervalId = null;
         }
 
         function resetStopwatch() {
-            pauseStopwatch();
+            stopStopwatch();
             seconds = 0;
             display.textContent = seconds;
         }
 
-        startBtn.addEventListener('click', startStopwatch);
-        pauseBtn.addEventListener('click', pauseStopwatch);
-        resetBtn.addEventListener('click', resetStopwatch);
+        startButton.addEventListener('click', startStopwatch);
+        stopButton.addEventListener('click', stopStopwatch);
+        resetButton.addEventListener('click', resetStopwatch);
     </script>
 
 </body>
