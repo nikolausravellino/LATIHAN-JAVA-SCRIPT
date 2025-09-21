@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mulai Kalkulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+            box-sizing: border-box;
+        }
+        h2 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .start-button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+            position: relative;
+            overflow: hidden;
+            font-weight: bold;
+        }
+        .start-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
+        }
+        .start-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+        }
+        .start-button:hover::before {
+            width: 250px;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Selamat Datang di Kalkulator Sederhana!</h2>
+        <button class="start-button" onclick="mulaiKalkulator()">Mulai Perhitungan</button>
+    </div>
+
+    <script>
+        function mulaiKalkulator() {
+            // Meminta input angka pertama dari pengguna
+            const angka1 = parseFloat(prompt("Masukkan angka pertama:"));
+
+            // Meminta input operator (+, -, *, /)
+            const operator = prompt("Masukkan operator (+, -, *, /):");
+
+            // Meminta input angka kedua dari pengguna
+            const angka2 = parseFloat(prompt("Masukkan angka kedua:"));
+
+            let hasil;
+
+            // Menggunakan switch-case untuk menentukan operasi
+            switch(operator) {
+                case '+':
+                    hasil = angka1 + angka2;
+                    break;
+                case '-':
+                    hasil = angka1 - angka2;
+                    break;
+                case '*':
+                    hasil = angka1 * angka2;
+                    break;
+                case '/':
+                    // Memastikan tidak ada pembagian dengan nol
+                    if (angka2 !== 0) {
+                        hasil = angka1 / angka2;
+                    } else {
+                        alert("Tidak bisa membagi dengan nol!");
+                        hasil = "Error";
+                    }
+                    break;
+                default:
+                    alert("Operator yang Anda masukkan tidak valid!");
+                    hasil = "Error";
+            }
+
+            // Menampilkan hasil perhitungan
+            if (hasil !== "Error") {
+                alert("Hasilnya adalah: " + hasil);
+            }
+        }
+    </script>
+
+</body>
+</html>
