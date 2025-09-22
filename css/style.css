@@ -1,0 +1,237 @@
+:root {
+    --primary-color: #007bff;
+    --primary-dark: #0056b3;
+    --secondary-color: #6c757d;
+    --bg-light: #f8f9fa;
+    --text-dark: #343a40;
+    --text-light: #ffffff;
+    --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body {
+    font-family: var(--font-family-sans);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    scroll-behavior: smooth;
+}
+
+/* Container utama untuk efek border */
+.main-container {
+    background-color: var(--text-light);
+    max-width: 1600px;
+    margin: 0 auto;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1320px;
+}
+
+/* Animasi Halaman Selamat Datang */
+#welcome-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: var(--bg-light);
+    flex-direction: column;
+    transition: opacity 1s ease-in-out;
+}
+
+#welcome-page .content {
+    background-color: var(--text-light);
+    padding: 60px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    animation: popIn 0.8s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#welcome-page h1 {
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+#welcome-page p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--secondary-color);
+}
+
+#welcome-page .btn {
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#welcome-page .btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Konten utama yang akan disembunyikan awalnya */
+#main-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Navbar */
+.navbar-brand img {
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.1);
+}
+
+.nav-link.active {
+    font-weight: bold;
+    color: var(--primary-color) !important;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* Hero Section */
+#home {
+    background: linear-gradient(to bottom, #b3d9ff, #ffffff);
+    padding: 120px 20px;
+}
+
+#home h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+#home h2 {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: 700;
+}
+
+#home .card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#home .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Projects */
+#projects .card {
+    border-radius: 15px;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#projects .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.project-img {
+    height: 250px;
+    object-fit: cover;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+
+/* Experience */
+#experience .carousel-item img {
+    height: 500px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease;
+}
+
+#experience .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.65);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 450px;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+/* About Section */
+#about {
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('img/bahan1.jpg') center/cover no-repeat fixed;
+    padding: 100px 20px;
+}
+
+#about h2 span {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#about .overlay-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    transform: scale(0.95);
+    transition: transform 0.5s ease;
+}
+
+#about .overlay-box.animate {
+    transform: scale(1);
+}
+
+/* Contact Section */
+#contact .form-control {
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#contact .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+#contact .btn-primary {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#contact .btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Animasi saat scrolling */
+.animated-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animated-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}

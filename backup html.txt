@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. Multisarana Sumber Berkat | Solusi Pengolahan Sampah Modern</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-dark: #0056b3;
+            --secondary-color: #6c757d;
+            --bg-light: #f8f9fa;
+            --text-dark: #343a40;
+            --text-light: #ffffff;
+            --font-family-sans: -apple-system, BlinkMacMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        body {
+            font-family: var(--font-family-sans);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
+
+        /* Container utama untuk efek border */
+        .main-container {
+            background-color: var(--text-light);
+            max-width: 1600px;
+            margin: 0 auto;
+            border-left: 1px solid #e0e0e0;
+            border-right: 1px solid #e0e0e0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1320px;
+        }
+
+        /* Animasi Halaman Selamat Datang */
+        #welcome-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background-color: var(--bg-light);
+            flex-direction: column;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #welcome-page .content {
+            background-color: var(--text-light);
+            padding: 60px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            animation: popIn 0.8s ease-out;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        #welcome-page h1 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+        }
+
+        #welcome-page p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--secondary-color);
+        }
+
+        #welcome-page .btn {
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #welcome-page .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Konten utama yang akan disembunyikan awalnya */
+        #main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Navbar */
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        #home {
+            background: linear-gradient(to bottom, #b3d9ff, #ffffff);
+            padding: 120px 20px;
+        }
+
+        #home h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        #home h2 {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-weight: 700;
+        }
+
+        #home .card {
+            border: none;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #home .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Projects */
+        #projects .card {
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #projects .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-img {
+            height: 250px;
+            object-fit: cover;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+        }
+
+        /* Experience */
+        #experience .carousel-item img {
+            height: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+        }
+
+        #experience .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.65);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 450px;
+            left: 50%;
+            bottom: 5%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('img/bahan1.jpg') center/cover no-repeat fixed;
+            padding: 100px 20px;
+        }
+
+        #about h2 span {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #about .overlay-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+            transform: scale(0.95);
+            transition: transform 0.5s ease;
+        }
+
+        #about .overlay-box.animate {
+            transform: scale(1);
+        }
+
+        /* Contact Section */
+        #contact .form-control {
+            border-radius: 8px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #contact .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+        }
+
+        #contact .btn-primary {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #contact .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Animasi saat scrolling */
+        .animated-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .animated-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="70" tabindex="0">
+
+    <div id="welcome-page">
+        <div class="content">
+            <h1>Selamat Datang di PT. Multisarana Sumber Berkat</h1>
+            <p class="mt-3">Mitra Andal dalam Transformasi Sampah Menjadi Nilai Tambah</p>
+            <button id="enter-btn" class="btn btn-primary mt-4">Masuk ke Website</button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div class="main-container">
+            <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+                <div class="container">
+                    <a class="navbar-brand d-flex align-items-center" href="#home">
+                        <img src="img/logo.png" alt="Logo Perusahaan" width="80" height="60" class="me-2">
+                        <div>
+                            <div class="fw-bold fs-5">PT. Multisarana Sumber Berkat</div>
+                            <div class="fs-6 text-light">Engineering & Manufacture</div>
+                        </div>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navMenu">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <section id="home" class="vh-100 d-flex flex-column justify-content-center align-items-center text-center">
+                <div class="container animated-section">
+                    <h1 class="fw-bold">Waste To Energy</h1>
+                    <h2 class="text-primary fw-bold">Multisarana Sumber Berkat</h2>
+                    <p class="lead mt-3">Mitra Andal Dalam Transformasi Sampah Menjadi Nilai Tambah</p>
+                    <a href="#projects" class="btn btn-primary btn-lg mt-4">Lihat Proyek Kami <i
+                            class="bi bi-arrow-down-circle"></i></a>
+                </div>
+                <div class="container mt-5 animated-section">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card p-4 h-100 shadow-sm">
+                                <h3 class="fw-bold text-center text-primary">Visi</h3>
+                                <p class="text-center">"Memberikan manfaat mesin dan layanan semaksimal mungkin untuk
+                                    menjadi tepat guna yang berkelanjutan."</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card p-4 h-100 shadow-sm">
+                                <h3 class="fw-bold text-center text-primary">Misi</h3>
+                                <ul class="list-unstyled text-start mt-3">
+                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i> Menerapkan sistem
+                                        legalitas sumber daya manusia yang baik.</li>
+                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i> Menjaga kestabilan
+                                        kualitas produk.</li>
+                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i> Meningkatkan
+                                        pemanfaatan teknologi dalam berinovasi dan berkreasi.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            ---
+
+            <section id="projects" class="py-5 bg-white animated-section">
+                <div class="container">
+                    <h2 class="text-center mb-5 fw-bold text-primary">Proyek Kami</h2>
+                    <div class="row g-4">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 shadow-sm">
+                                <img src="img/discscreener.png.jpg" class="card-img-top project-img"
+                                    alt="Disc Screener">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-center fw-bold">Disc Screener Machine</h5>
+                                    <p class="card-text text-center">Memisahkan dan menyortir material berdasarkan
+                                        ukuran atau bentuknya dalam pengelolaan sampah.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 shadow-sm">
+                                <img src="img/pavingpress.jpg" class="card-img-top project-img" alt="Press Machine">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-center fw-bold">Press Machine</h5>
+                                    <p class="card-text text-center">Mesin pengepress sampah plastik guna mendukung dari
+                                        pengelolaan sampah.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 shadow-sm">
+                                <img src="img/turbosparator.jpg" class="card-img-top project-img" alt="Turbo Separator">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-center fw-bold">Turbo Separator Machine</h5>
+                                    <p class="card-text text-center">Mesin pemilah otomatis dengan putaran kipas dengan
+                                        daya tinggi.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 shadow-sm">
+                                <img src="img/woodchiper.jpg" class="card-img-top project-img" alt="Woodchipper">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-center fw-bold">Woodchipper Machine</h5>
+                                    <p class="card-text text-center">Mesin pencacah kayu dilengkapi dengan pisau tajam
+                                        sehingga hasil proses pencacahan bisa maksimal.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 shadow-sm">
+                                <img src="img/Conveyor Feeder.jpg" class="card-img-top project-img"
+                                    alt="Conveyor Feeder">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-center fw-bold">Conveyor Feeder</h5>
+                                    <p class="card-text text-center">Menyalurkan material sampah dari satu titik ke
+                                        titik berikutnya secara otomatis dan teratur.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 shadow-sm">
+                                <img src="img/Wet Scrubber.jpg" class="card-img-top project-img" alt="Wet Scrubber">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-center fw-bold">Wet Scrubber</h5>
+                                    <p class="card-text text-center">Mengendalikan pencemaran udara dengan menyaring gas
+                                        buang dan debu dari proses pengolahan sampah.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 shadow-sm">
+                                <img src="img/Magnetic Sparator.jpg" class="card-img-top project-img"
+                                    alt="Wet Scrubber">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-center fw-bold">Magnetic Sparator</h5>
+                                    <p class="card-text text-center"> Alat ini digunakan untuk memisahkan material logam
+                                        dengan memakai magnet untuk menghindari sampah logam yang tercampur.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 shadow-sm">
+                                <img src="img/Bag Opener.jpg" class="card-img-top project-img" alt="Wet Scrubber">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-center fw-bold">Bag Opener</h5>
+                                    <p class="card-text text-center">Mesin ini digunakan untuk membuka sampah plastik
+                                        yang tercampur atau kondisi didalam kantong plastik guna memudahkan untuk proses
+                                        penyortiran.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 shadow-sm">
+                                <img src="img/Screw Mixing.jpg" class="card-img-top project-img" alt="Wet Scrubber">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-center fw-bold">Screw Mixing</h5>
+                                    <p class="card-text text-center">Memudahkan proses pencampuran organik dengan
+                                        anorganik tertentu dalam proses pengolahan kompos atau RDF (Refuse Derived
+                                        Fuel), screw mixer dipakai untuk mencampur sampah organik dengan bahan tambahan
+                                        seperti serbuk kayu.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            ---
+
+            <section id="experience" class="py-5 bg-light animated-section">
+                <div class="container">
+                    <h2 class="text-center mb-5 fw-bold text-primary">Pengalaman Kami</h2>
+                    <div id="experienceCarousel" class="carousel slide shadow-lg" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#experienceCarousel" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#experienceCarousel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#experienceCarousel" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#experienceCarousel" data-bs-slide-to="3"
+                                aria-label="Slide 4"></button>
+                            <button type="button" data-bs-target="#experienceCarousel" data-bs-slide-to="4"
+                                aria-label="Slide 5"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/TPST Kertamukti Cianjur.jpg" class="d-block w-100"
+                                    alt="TPST Kertamukti Cianjur">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Tempat Pengolahan Sampah Terpadu</h5>
+                                    <p>Kertamukti, Cianjur - Jawa Barat</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/TPS 3R Semarang.jpg" class="d-block w-100" alt="TPS 3R Semarang">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Tempat Pengolahan Sampah 3R</h5>
+                                    <p>Semarang - Jawa Tengah</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/TPST Gili Trawangan.jpg" class="d-block w-100" alt="TPST Gili Trawangan">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Tempat Pengolahan Sampah Terpadu</h5>
+                                    <p>Gili Trawangan - Nusa Tenggara Barat</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/TPST Cikukang Holis.jpg" class="d-block w-100" alt="TPST Cikukang Holis">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Tempat Pengolahan Sampah Terpadu</h5>
+                                    <p>Cikukang Holis II - Jawa Barat</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/TPS Nyengseret.jpg" class="d-block w-100" alt="TPS Nyengseret">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Tempat Pengolahan Sampah Terpadu</h5>
+                                    <p>Nyengseret - Jawa Barat</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#experienceCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#experienceCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            ---
+
+            <section id="about" class="py-5 text-dark animated-section">
+                <div class="container">
+                    <h2 class="text-center mb-4 fw-bold text-primary">
+                        <span>Tentang Kami</span>
+                    </h2>
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="overlay-box shadow-lg">
+                                <h3 class="fw-bold text-center mb-4">PT. MULTISARANA SUMBER BERKAT</h3>
+                                <p class="lead text-center">
+                                    PT. Multisarana Sumber Berkat adalah perusahaan yang bergerak di bidang manufaktur
+                                    mesin-mesin pengolahan sampah yang inovatif dan tepat guna.
+                                </p>
+                                <p class="text-justify">
+                                    Selain sebagai penyedia mesin, kami juga berkomitmen memberikan layanan konsultasi
+                                    dan pemeliharaan
+                                    sehingga mesin menjadi lebih tepat guna dengan manfaat yang berkelanjutan,purna jual
+                                    juga menjadi okus utama kami untuk mengedepankan kontinuitas dalam mengatasi isu
+                                    permasalahan di Indonesia.
+                                </p>
+                                <div class="text-center mt-4">
+                                    <a href="#contact" class="btn btn-primary btn-lg">Hubungi Kami</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            ---
+
+            <section id="contact" class="py-5 bg-light animated-section">
+                <div class="container">
+                    <h2 class="text-center mb-5 fw-bold text-primary">Hubungi Kami</h2>
+                    <div class="row">
+                        <div class="col-lg-6 mb-4 mb-lg-0">
+                            <div class="p-4 bg-white rounded shadow-sm h-100">
+                                <h4 class="fw-bold mb-3">Informasi Kontak</h4>
+                                <ul class="list-unstyled">
+                                    <li class="mb-3"><i class="bi bi-geo-alt-fill me-2 text-primary"></i>
+                                        <strong>Alamat Office:</strong> Jl. Slamet Riyadi No. 568, Surakarta, Jawa
+                                        Tengah,
+                                        Indonesia
+                                    </li>
+                                    <li class="mb-3"><i class="bi bi-geo-alt-fill me-2 text-primary"></i>
+                                        <strong>Alamat :</strong> Jl. Slamet Riyadi No. 568, Surakarta, Jawa Tengah,
+                                        Indonesia
+                                    </li>
+                                    <li class="mb-3"><i class="bi bi-envelope-fill me-2 text-primary"></i>
+                                        <strong>Email:</strong>Ptmsb.solo@gmail.com
+                                    </li>
+                                    <li class="mb-3"><i class="bi bi-whatsapp me-2 text-primary"></i>
+                                        <strong>WhatsApp:</strong> +62-877-0830-7557(Admin)
+                                    </li>
+                                </ul>
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.3093762456792!2d110.8625572!3d-7.541199499999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a178eec6461a1%3A0xfac9abfe5026b99c!2sPT%20Multisarana%20Sumber%20Berkat!5e0!3m2!1sid!2sid!4v1758391417022!5m2!1sid!2sid"
+                                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="p-4 bg-white rounded shadow-sm h-100">
+                                <h4 class="fw-bold mb-3">Kirim Pesan Kepada Kami</h4>
+                                <form>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6 mb-3 mb-md-0">
+                                            <input type="text" class="form-control" placeholder="Nama Lengkap" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="email" class="form-control" placeholder="Alamat Email"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Nomor Telepon">
+                                    </div>
+                                    <div class="mb-3">
+                                        <textarea class="form-control" rows="5" placeholder="Pesan Anda..."
+                                            required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">Kirim Pesan</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="bg-dark text-white text-center py-4">
+                <div class="container">
+                    <p class="mb-0">© 2025 PT. Multisarana Sumber Berkat | Mengubah Limbah Menjadi Berkah</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const welcomePage = document.getElementById('welcome-page');
+            const mainContent = document.getElementById('main-content');
+            const enterButton = document.getElementById('enter-btn');
+
+            // Transisi halaman masuk
+            enterButton.addEventListener('click', function () {
+                welcomePage.style.opacity = '0';
+                setTimeout(() => {
+                    welcomePage.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    setTimeout(() => {
+                        mainContent.style.opacity = '1';
+                        // Mengaktifkan Intersection Observer setelah konten utama terlihat
+                        setupObservers();
+                    }, 50);
+                }, 1000);
+            });
+
+            // Intersection Observer untuk animasi saat scrolling
+            function setupObservers() {
+                const sectionsToAnimate = document.querySelectorAll('.animated-section');
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.2
+                });
+
+                sectionsToAnimate.forEach(section => {
+                    observer.observe(section);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
